@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.FileImageInputStream;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -85,6 +87,54 @@ public class Game extends JPanel implements KeyListener,ActionListener {
 		timer.start();
 	}
 	
+	
+	
+	
+	@Override
+	public void repaint() {
+		super.repaint();
+	}
+
+	@Override
+	public void paint(Graphics g) {
+		
+		time_to_pass += 5;
+		
+		super.paint(g);
+		
+		g.setColor(Color.RED);
+		g.fillOval(targetX, 0, 20, 20);
+		g.drawImage(image, spaceshipX, 490, image.getWidth() / 10, image.getHeight() / 10, this);
+		
+		for(Fire fire : fires) {
+			
+			if(fire.getY() < 0) {
+				fires.remove(fire);
+			}
+		}
+		g.setColor(Color.BLUE);
+		
+		for(Fire fire : fires) {
+			
+			g.fillRect(fire.getX(), fire.getY(), 8, 12);
+		}
+		
+		if(control()) {
+			timer.stop();
+			
+			String message = "Congratulations!\n"
+							+" You managed to hit the target!"
+							+"Spent Fires : " + spendFire + "\nElapsed time : " + time_to_pass / 1000.0;
+			
+			JOptionPane.showMessageDialog(null, message);
+			
+			System.exit(0);
+			
+		}
+		
+	}
+
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
