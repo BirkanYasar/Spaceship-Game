@@ -147,7 +147,7 @@ public class Game extends JPanel implements KeyListener,ActionListener {
 			
 			Clip clip = AudioSystem.getClip();
 			
-			clip.open();
+			clip.open(audio);
 			clip.start();
 			
 		} catch (UnsupportedAudioFileException | IOException e) {
@@ -204,8 +204,9 @@ public class Game extends JPanel implements KeyListener,ActionListener {
 			fires.add(new Fire(spaceshipX+30, 470));
 			
 			spendFire++;
+			
+			fireSound();
 		}
-		fireSound();
 		
 	}
 
