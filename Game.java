@@ -161,8 +161,20 @@ public class Game extends JPanel implements KeyListener,ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
+		for(Fire fire : fires) {
+			fire.setY(fire.getY() - firedirY);
+		}
+		
+		targetX += targetdirx;
+		
+		if(targetX >= 750) {
+			targetdirx = -targetdirx;
+		}
+		if(targetX <= 0) {
+			targetdirx = -targetdirx;
+		}
+		repaint();
 	}
 
 	@Override
