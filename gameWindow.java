@@ -1,9 +1,28 @@
+import java.awt.HeadlessException;
 
-public class gameWindow {
+import javax.swing.JFrame;
 
+public class gameWindow extends JFrame{
+	
+	public gameWindow(String title) throws HeadlessException {
+		super(title);
+	}
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
+	gameWindow window = new gameWindow("Spaceship Game");
+	
+	window.setResizable(false);
+	window.setFocusable(false);
+	window.setSize(800,600);
+	
+	window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
+	Game game = new Game();
+	
+	
+	
+		
 	}
 
 }
