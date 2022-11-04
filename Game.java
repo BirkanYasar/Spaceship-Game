@@ -1,10 +1,16 @@
+import java.awt.Color;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
+import javax.imageio.stream.FileImageInputStream;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -35,8 +41,6 @@ class Fire {
 	}
 	
 	
-	
-	
 }
 
 public class Game extends JPanel implements KeyListener,ActionListener {
@@ -58,6 +62,27 @@ public class Game extends JPanel implements KeyListener,ActionListener {
 	boolean question = false;
 	
 	public boolean control() {
+		
+		for(Fire fire : fires) {
+			
+			if(new Rectangle(fire.getX(), fire.getY(), 10,20).intersects(targetX,0,20,20)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	Game() {
+		
+		try {
+			image = ImageIO.read(new FileImageInputStream(new File("SpaceRocket.png")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		setBackground(Color.BLACK);
+		
+		timer.start();
 	}
 	
 	@Override
