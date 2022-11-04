@@ -1,6 +1,8 @@
 import java.awt.HeadlessException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class gameWindow extends JFrame{
 	
@@ -20,7 +22,22 @@ public class gameWindow extends JFrame{
 	
 	Game game = new Game();
 	
+	game.requestFocus();
 	
+	game.addKeyListener(game);
+	
+	game.setFocusable(true);
+	game.setFocusTraversalKeysEnabled(false);
+	
+	window.add(game);
+	
+	ArrayList<String> player_list = new ArrayList<String>();
+	
+	String names = JOptionPane.showInputDialog("Please text to your name.");
+	
+	player_list.add(names);
+	
+	window.setVisible(true);
 	
 		
 	}
