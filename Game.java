@@ -52,7 +52,7 @@ class Fire {
 
 public class Game extends JPanel implements KeyListener,ActionListener {
 
-	Timer timer = new Timer(2,this);
+	Timer timer = new Timer(10,this);
 	
 	private int time_to_pass = 0;
 	private int spendFire = 0;
@@ -110,7 +110,7 @@ public class Game extends JPanel implements KeyListener,ActionListener {
 		
 		g.setColor(Color.RED);
 		g.fillOval(targetX, 0, 20, 20);
-		g.drawImage(image, spaceshipX, 490, image.getWidth() / 10, image.getHeight() / 10, this);
+		g.drawImage(image, spaceshipX, 480, image.getWidth() / 13, image.getHeight() / 13, this);
 		
 		for(Fire fire : fires) {
 			
@@ -151,10 +151,8 @@ public class Game extends JPanel implements KeyListener,ActionListener {
 			clip.start();
 			
 		} catch (UnsupportedAudioFileException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (LineUnavailableException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -179,9 +177,7 @@ public class Game extends JPanel implements KeyListener,ActionListener {
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void keyTyped(KeyEvent e) {		
 	}
 
 	@Override
@@ -196,10 +192,16 @@ public class Game extends JPanel implements KeyListener,ActionListener {
 			}else {
 				spaceshipX -= spaceshipdirX;
 			}
+		}else if(c == KeyEvent.VK_RIGHT) {
+			if(spaceshipX >= 750) {
+				spaceshipX = 750;
+			}else {
+				spaceshipX += spaceshipdirX;
+			}
 		}
 		else if(c == KeyEvent.VK_CONTROL) {
 			
-			fires.add(new Fire(spaceshipX+15, 470));
+			fires.add(new Fire(spaceshipX+30, 470));
 			
 			spendFire++;
 		}
@@ -208,9 +210,7 @@ public class Game extends JPanel implements KeyListener,ActionListener {
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void keyReleased(KeyEvent e) {		
 	}
 
 }
