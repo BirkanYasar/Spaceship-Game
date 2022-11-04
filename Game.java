@@ -65,6 +65,7 @@ public class Game extends JPanel implements KeyListener,ActionListener {
 	private int targetX = 0;
 	private int targetdirx = 10;
 	private int spaceshipX = 350;
+	private int spaceshipdirX = 20;
 	
 	boolean question = false;
 	
@@ -185,7 +186,24 @@ public class Game extends JPanel implements KeyListener,ActionListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
+		
+		int c = e.getKeyCode();
+		
+		if(c == KeyEvent.VK_LEFT) {
+			
+			if(spaceshipX <= 0) {
+				spaceshipX = 0;
+			}else {
+				spaceshipX -= spaceshipdirX;
+			}
+		}
+		else if(c == KeyEvent.VK_CONTROL) {
+			
+			fires.add(new Fire(spaceshipX+15, 470));
+			
+			spendFire++;
+		}
+		fireSound();
 		
 	}
 
